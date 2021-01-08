@@ -18,7 +18,8 @@ def reader(name_doc):
     def gen():
         with open(name_doc, 'r', encoding="utf-8") as f:
             for line in f:
-                yield line
+                for char in line:
+                    yield char
 
     return gen
 

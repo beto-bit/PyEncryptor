@@ -1,20 +1,9 @@
 """
-Este módulo contiene las funciones que se utilizan para la edición de los diversos
-documentos, básicamente las funciones que hacen el trabajo de encriptación.
+Este módulo se encarga de modificar los textos de diversas formas, con el
+objetivo de hacer el trabajo de encriptación. 
 """
 
-def list_to_string(lista, separador=""):
-    """
-    Convierte una lista a una cadena de texto poniendo entre espacio de la lista
-    el símbolo correspondiente al separador.
-    """
-    str1 = ""
-
-    for elemento in lista:
-        str1 += elemento + separador
-
-    return str1
-
+# ENCRIPTADOR====================================================================
 
 def char_to_ascii(lista, pssw):
     """
