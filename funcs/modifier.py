@@ -4,26 +4,43 @@ objetivo de hacer el trabajo de encriptación.
 """
 
 # ENCRIPTADOR====================================================================
-
-def char_to_ascii(lista, pssw):
+def char_to_unicode(gen, pwd):
     """
-    Esta función es la que convierte cada caracter de la lista anterior en
-    su código ASCII, luego, se le suma la pssw (int) que se le intrduce, 
-    dejando un "$" entre cada caracter. Devuelve esa lista.
-    """
-    new_lista = [] # Creación de lista contenedora de salida
-    i = 0 # contados
+    Esta función retorna un generador nuevo que contiene todos los valores 
+    UNICODE del generador que se le introduce. 
 
-    for linea in lista:
-        new_lista.append("") # Creación de nueva 
+    Acepta un generador y una contraseña como entrada, de forma que el valor de
+    salida es el valor absoluto de la suma de los valores.
+    """
+    def gen_out():
+        for char in gen():
+            yield abs(ord(char) + pwd)
+
+    return gen_out
+
+
+    
+    
+
+# def char_to_ascii(lista, pssw):
+#     """
+#     Esta función es la que convierte cada caracter de la lista anterior en
+#     su código ASCII, luego, se le suma la pssw (int) que se le intrduce, 
+#     dejando un "$" entre cada caracter. Devuelve esa lista.
+#     """
+#     new_lista = [] # Creación de lista contenedora de salida
+#     i = 0 # contados
+
+#     for linea in lista:
+#         new_lista.append("") # Creación de nueva 
         
-        for chara in linea:
-            new_chara = str(ord(chara) + pssw) + "$" # Convertir a ASCII y añadir "$"
-            new_lista[i] += new_chara
+#         for chara in linea:
+#             new_chara = str(ord(chara) + pssw) + "$" # Convertir a ASCII y añadir "$"
+#             new_lista[i] += new_chara
 
-        i += 1
+#         i += 1
 
-    return new_lista
+#     return new_lista
 
 
 def ascii_to_char(lista, pssw):
