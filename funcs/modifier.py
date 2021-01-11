@@ -39,3 +39,10 @@ class Crypter():
                 # entre 0 y 0x10ffff (inclusivo).
 
         self.gen = new_gen
+
+
+def str_to_num(string):
+    sum = 0
+    for char in string:
+        sum += ord(char)
+    return sum    
