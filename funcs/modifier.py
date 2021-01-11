@@ -4,24 +4,29 @@ objetivo de hacer el trabajo de encriptación.
 """
 
 # ENCRIPTADOR====================================================================
-def char_to_unicode(gen, pwd):
+class Encriptar():
     """
-    Esta función retorna un generador nuevo que contiene todos los valores 
-    UNICODE del generador que se le introduce. 
-
-    Acepta un generador y una contraseña como entrada, de forma que el valor de
-    salida es el valor absoluto de la suma de los valores.
+    Esta clase contiene los métodos y atributos de un objeto generador destinado
+    a 'encriptar' estas cadenas.
     """
-    def gen_out():
-        for char in gen():
-            yield abs(ord(char) + pwd)
+    def __init__(self, gen):
+        self.gen = gen
 
-    return gen_out
+    def to_unicode(self, pwd):
+        """
+        Básicamente se encarga de leer cada caracter y pasarlo a su equivalente 
+        ASCII. Recibe como argumentos una "contraseña", el cual corresponde a un
+        número.  
+        """
+        temp_gen = self.gen
 
+        def new_gen():
+            for char in temp_gen():
+                yield abs(ord(char) + pwd)
+
+        self.gen = new_gen
 
     
-    
-
 # def char_to_ascii(lista, pssw):
 #     """
 #     Esta función es la que convierte cada caracter de la lista anterior en
@@ -43,59 +48,59 @@ def char_to_unicode(gen, pwd):
 #     return new_lista
 
 
-def ascii_to_char(lista, pssw):
-    """
-    Convierte los elementos de una lista (strings) usando el siguiente criterio:
-    Toma el número correspondiente, separado por un "$" y toma ese valor y le 
-    resta el pssw(int) para devolver una lista con el equivalente en ASCII.
+# def ascii_to_char(lista, pssw):
+#     """
+#     Convierte los elementos de una lista (strings) usando el siguiente criterio:
+#     Toma el número correspondiente, separado por un "$" y toma ese valor y le 
+#     resta el pssw(int) para devolver una lista con el equivalente en ASCII.
 
-    En caso de que el valor que examina (dentro de la lista) sea mayor a 255 
-    usa la división con residuo y examina ese valor.
-    """
-    salida = []
-    new_lista = [] # lista con los valores ASCII
-    listori = [] # lista temporal que sirve de puente entre listas
+#     En caso de que el valor que examina (dentro de la lista) sea mayor a 255 
+#     usa la división con residuo y examina ese valor.
+#     """
+#     salida = []
+#     new_lista = [] # lista con los valores ASCII
+#     listori = [] # lista temporal que sirve de puente entre listas
 
-    # Bucle para añadir listas embedidas a new_lista
-    for elemento in lista:
-        lista_temp = elemento.split("$") 
-        lista_temp.pop() 
+#     # Bucle para añadir listas embedidas a new_lista
+#     for elemento in lista:
+#         lista_temp = elemento.split("$") 
+#         lista_temp.pop() 
 
-        # Bucle para hacer todos los elementos anteriores en (int)
-        for numero in lista_temp:
-            listori.append(int(numero) - pssw)
+#         # Bucle para hacer todos los elementos anteriores en (int)
+#         for numero in lista_temp:
+#             listori.append(int(numero) - pssw)
 
-        new_lista.append(listori)
+#         new_lista.append(listori)
 
-        listori = [] # Reiniciar listori
+#         listori = [] # Reiniciar listori
 
-    # Bucle para convertir cada valor ASCII a caracter
-    for mini in new_lista:
-        listica = [] # init lista para contenedor en new_lista
-        for number in mini:
-            listica.append(chr(abs(number))) # TODO si no funciona esto ponerle el %255
+#     # Bucle para convertir cada valor ASCII a caracter
+#     for mini in new_lista:
+#         listica = [] # init lista para contenedor en new_lista
+#         for number in mini:
+#             listica.append(chr(abs(number))) # TODO si no funciona esto ponerle el %255
         
-        salida.append(listica)
+#         salida.append(listica)
 
-    return salida
+#     return salida
 
-def char_to_str(lista):
-    """
-    Esta función convierte una colección de caracteres a una cadena de texto. 
-    Está especialmente diseñada para examinar los valores que están dentro de
-    una lista anidada. Devuelve esa lista.
-    """
-    salida = []
+# def char_to_str(lista):
+#     """
+#     Esta función convierte una colección de caracteres a una cadena de texto. 
+#     Está especialmente diseñada para examinar los valores que están dentro de
+#     una lista anidada. Devuelve esa lista.
+#     """
+#     salida = []
     
-    for elemento in lista:
-        listori = "" # string temporal
+#     for elemento in lista:
+#         listori = "" # string temporal
 
-        for char in elemento:
-            listori += char
+#         for char in elemento:
+#             listori += char
         
-        salida.append(listori)
+#         salida.append(listori)
 
-    return salida
+#     return salida
 
 
 
