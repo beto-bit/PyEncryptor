@@ -27,8 +27,8 @@ def base(func):
     """
     def wrapper(*args, **kwargs):
         def destroy():
-            nonlocal pwd
             pwd = entry.get()
+            func(pwd)
             root.destroy()
 
         
@@ -57,10 +57,7 @@ def base(func):
         # Otro puto espacio
         espacio.pack(side=tk.BOTTOM)
 
-        pwd = entry.get()
         root.mainloop()
-
-        func(pwd)
 
     return wrapper
 
