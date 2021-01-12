@@ -16,8 +16,8 @@ class Crypter():
     def to_unicode(self, pwd):
         """
         Básicamente se encarga de leer cada caracter y pasarlo a su equivalente 
-        ASCII. Recibe como argumentos una "contraseña", el cual corresponde a un
-        número.  
+        en UNICODE. Recibe como argumentos una "contraseña", el cual corresponde
+        a un número entero.  
         """
         temp_gen = self.gen
 
@@ -29,6 +29,10 @@ class Crypter():
 
     # Desencriptar
     def to_char(self, pwd):
+        """
+        Recibe como argumento una contraseña (int) y convierte cada valor del
+        objeto en su equivalente de caracter 
+        """
         temp_gen = self.gen
 
         def new_gen():
@@ -42,6 +46,9 @@ class Crypter():
 
 
 def str_to_num(string):
+    """
+    Genera un equivalente (int) de cualquier cadena de texto.
+    """
     sum = 0
     for char in string:
         sum += ord(char)

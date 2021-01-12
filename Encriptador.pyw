@@ -1,6 +1,6 @@
-import main.main as mn
+from tkinter import filedialog, ttk
+import funcs
 import tkinter as tk
-from tkinter import filedialog, Text, ttk
 
 files = []
 
@@ -20,75 +20,71 @@ def open_file():
         label = tk.Label(frame, text=archivo.name, bg="gray")
         label.pack()
 
-
-# Base
-def base(crypt):
+def base(func):
     """
-    Básicamente sirve a modo de contenedor para no tener
-    que repetir el código que usaré para crear las nuevas ventanas.
-    
-    Y meter un texto útil.
+    Un decorador para tener la interfaz de las ventanas emergentes.
     """
+    def wrapper(*args, **kwargs):
+        # Ventana
+        root = tk.Tk()
+        root.title("Encriptar / Desencriptar")
+        root.resizable(False, False)
 
-    def destroy():
-        global contra
-        nonlocal coso
+        # Texto
+        texto = tk.Label(root, text="Por favor introduzca una contraseña. \
+            Esta deberá conservarla a fin de encriptar o desencriptar los\
+                diferentes archivos y conservarlos")
+        texto.pack(side=tk.TOP)
 
-        contra = entry.get()
-        coso.destroy()
+        # Entrada
+        entry = ttk.Entry(root)
+        entry.insert(0, "Contraseña123")
+        entry.pack(side=tk.TOP)
 
+        # Un puto espacio
+        espacio = tk.Label(root, text="\n\n")
+        espacio.pack(side=tk.TOP)
 
-    # VENTANA
-    coso = tk.Tk()
-    coso.title("Contraseña")
-    coso.resizable(False, False)
+        # Botón de salida
+        button = tk.Button(root, text="Aceptar", command=lambda: root.destroy())
+        button.pack(side=tk.TOP)
 
-    # Texto
-    presen = tk.Label(coso, text=f"\n\nPor favor introduzca una contraseña de {crypt}.\nEsta deberá conservarla a fin de poder desencriptar\nlos documentos que desee. También puede compartirla :D.\n\n")
-    presen.pack(side=tk.TOP)
+        # Otro puto espacio
+        espacio.pack(side=tk.BOTTOM)
 
-    # Entrada
-    entry = ttk.Entry(coso)
-    entry.insert(0, "Contraseña123")
-    entry.pack(side=tk.TOP)
+        root.mainloop()
 
-    # Un puto espacio
-    espacio = tk.Label(coso, text="\n\n")
-    espacio.pack(side=tk.TOP)
+        func(*args, **kwargs)
+        return entry.get()
 
-    # Botón de salida
-    button = tk.Button(coso, text=crypt, command=destroy)
-    button.pack(side=tk.BOTTOM)
+    return wrapper
 
-    # Otro puto espacio (QUE VA ABAJO DE SALIDA)
-    espacio2 = tk.Label(coso, text="\n")
-    espacio.pack(side=tk.BOTTOM)
-
-    coso.mainloop()
-
-
-# Encriptar Archivos
-def Encrypt_All():
-    """
-    Esto encripta todo. (con todo y botón)
-    """
-    base("Encriptar")
-
-    # Bucle para desencriptar todo
-    for archivo in files:
-        mn.encriptar(archivo.name, archivo.name, contra)
+# ENCRIPTAR =====================================================================
 
 
-# Desencriptar Archivos
-def Dencrypt_All():
-    """
-    Esto desencripta todo. (con todo y botón)
-    """
-    base("Desencriptar")
 
-    # Bucle pa desencriptar
-    for archivo in files:
-        mn.desencriptar(archivo.name, archivo.name, contra)
+# # Encriptar Archivos
+# def Encrypt_All():
+#     """
+#     Esto encripta todo. (con todo y botón)
+#     """
+#     base("Encriptar")
+
+#     # Bucle para desencriptar todo
+#     for archivo in files:
+#         mn.encriptar(archivo.name, archivo.name, contra)
+
+
+# # Desencriptar Archivos
+# def Dencrypt_All():
+#     """
+#     Esto desencripta todo. (con todo y botón)
+#     """
+#     base("Desencriptar")
+
+#     # Bucle pa desencriptar
+#     for archivo in files:
+#         mn.desencriptar(archivo.name, archivo.name, contra)
 
 
 
@@ -122,7 +118,6 @@ encrypt_file.pack(side=tk.LEFT)
 dencrypt_file = tk.Button(root, text="Desencriptar Archivos", padx=10,
                           pady=5, fg="white", bg="#30336b", command=Dencrypt_All)
 dencrypt_file.pack(side=tk.LEFT)
-
 
 
 root.mainloop() # Mainloop
