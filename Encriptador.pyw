@@ -4,6 +4,7 @@ import tkinter as tk
 
 files = []
 
+
 # Abrir archivos 
 def open_file():
 
@@ -25,13 +26,19 @@ def base(func):
     Un decorador para tener la interfaz de las ventanas emergentes.
     """
     def wrapper(*args, **kwargs):
+        def destroy():
+            nonlocal pwd
+            pwd = entry.get()
+            root.destroy()
+
+        
         # Ventana
         root = tk.Tk()
         root.title("Encriptar / Desencriptar")
         root.resizable(False, False)
 
         # Texto
-        texto = tk.Label(root, text="Por favor introduzca una contraseña.\nEsta deberá conservarla a fin de encriptar\no desencriptar los diferentes\narchivos y conservarlos ;).")
+        texto = tk.Label(root, text="Por favor introduzca una contraseña.\nEsta deberá conservarla a fin de encriptar\no desencriptar los diferentes\narchivos y conservarlos ;).\n\n")
         texto.pack(side=tk.TOP)
 
         # Entrada
@@ -44,7 +51,7 @@ def base(func):
         espacio.pack(side=tk.TOP)
 
         # Botón de salida
-        button = tk.Button(root, text="Aceptar", command=lambda: root.destroy())
+        button = tk.Button(root, text="Aceptar", command=destroy)
         button.pack(side=tk.TOP)
 
         # Otro puto espacio
