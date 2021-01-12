@@ -1,0 +1,55 @@
+"""
+Este módulo se encarga de modificar los textos de diversas formas, con el
+objetivo de hacer el trabajo de encriptación. 
+"""
+
+# CLASE ENCRIPTAR-DESENCRIPTAR==================================================
+class Crypter():
+    """
+    Esta clase contiene los métodos y atributos de un objeto destinado a 
+    'encriptar' estas cadenas.
+    """
+    def __init__(self, gen):
+        self.gen = gen
+
+    # Encriptar
+    def to_unicode(self, pwd):
+        """
+        Básicamente se encarga de leer cada caracter y pasarlo a su equivalente 
+        en UNICODE. Recibe como argumentos una "contraseña", el cual corresponde
+        a un número entero.  
+        """
+        temp_gen = self.gen
+
+        def new_gen():
+            for char in temp_gen():
+                yield abs(ord(char) + pwd)
+
+        self.gen = new_gen
+
+    # Desencriptar
+    def to_char(self, pwd):
+        """
+        Recibe como argumento una contraseña (int) y convierte cada valor del
+        objeto en su equivalente de caracter 
+        """
+        temp_gen = self.gen
+
+        def new_gen():
+            for num in temp_gen():
+                yield chr(abs(num - pwd) % 1114111) 
+                # Pongo el número 1114111 porque según la documentación de la
+                # función "chr" el número que se le introduzca debe de estar 
+                # entre 0 y 0x10ffff (inclusivo).
+
+        self.gen = new_gen
+
+
+def str_to_num(string):
+    """
+    Genera un equivalente (int) de cualquier cadena de texto.
+    """
+    sum = 0
+    for char in string:
+        sum += ord(char)
+    return sum    
