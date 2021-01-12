@@ -31,9 +31,7 @@ def base(func):
         root.resizable(False, False)
 
         # Texto
-        texto = tk.Label(root, text="Por favor introduzca una contraseña. \
-            Esta deberá conservarla a fin de encriptar o desencriptar los\
-                diferentes archivos y conservarlos")
+        texto = tk.Label(root, text="Por favor introduzca una contraseña.\nEsta deberá conservarla a fin de encriptar\no desencriptar los diferentes\narchivos y conservarlos ;).")
         texto.pack(side=tk.TOP)
 
         # Entrada
@@ -52,41 +50,23 @@ def base(func):
         # Otro puto espacio
         espacio.pack(side=tk.BOTTOM)
 
+        pwd = entry.get()
         root.mainloop()
 
-        func(*args, **kwargs)
-        return entry.get()
+        func(pwd)
 
     return wrapper
 
 # ENCRIPTAR =====================================================================
+@base
+def encrypt_all(pwd):
+    for file in files:
+        funcs.encrypt(file.name, pwd)
 
-
-
-# # Encriptar Archivos
-# def Encrypt_All():
-#     """
-#     Esto encripta todo. (con todo y botón)
-#     """
-#     base("Encriptar")
-
-#     # Bucle para desencriptar todo
-#     for archivo in files:
-#         mn.encriptar(archivo.name, archivo.name, contra)
-
-
-# # Desencriptar Archivos
-# def Dencrypt_All():
-#     """
-#     Esto desencripta todo. (con todo y botón)
-#     """
-#     base("Desencriptar")
-
-#     # Bucle pa desencriptar
-#     for archivo in files:
-#         mn.desencriptar(archivo.name, archivo.name, contra)
-
-
+@base
+def dencrypt_all(pwd):
+    for file in files:
+        funcs.dencrypt(file.name, pwd)
 
 root = tk.Tk() # Crear Ventana
 root.title("Encriptador")
@@ -110,13 +90,13 @@ open_file.pack(side=tk.LEFT)
 
 # Encriptar
 encrypt_file = tk.Button(root, text="Encriptar Archivos", padx=10,
-                         pady=5, fg="white", bg="#30336b", command=Encrypt_All)
+                         pady=5, fg="white", bg="#30336b", command=encrypt_all)
 encrypt_file.pack(side=tk.LEFT)
 
 
 # DesEncriptar
 dencrypt_file = tk.Button(root, text="Desencriptar Archivos", padx=10,
-                          pady=5, fg="white", bg="#30336b", command=Dencrypt_All)
+                          pady=5, fg="white", bg="#30336b", command=dencrypt_all)
 dencrypt_file.pack(side=tk.LEFT)
 
 
