@@ -12,10 +12,19 @@ def get_path(filepath: Path) -> str:
     name_len = len(filepath.name)
     return str(filepath)[0: -name_len]
 
+# Yes. This function should be in crypto.py
+def read_file(filepath) -> bytes:
+    """Reads a file."""
+    with open(filepath, 'rb') as f:
+        content = f.read()
+        f.close()
 
-def basic_encryption(filepath: Path, override=False) -> bytes:
+    return content
+
+def basic_encryption(filepath: str, override=False) -> bytes:
     """Encrypts a file using a generated key, writes the key in the
     same folder as the file and then returns the key"""
+    filepath = Path(filepath)
     path = get_path(filepath)
     key = generate_filekey(path)
 
@@ -30,5 +39,13 @@ def basic_encryption(filepath: Path, override=False) -> bytes:
     return key
     
 
+def basic_decryption(filepath: str) -> None:
+    """Decrypts a file using the generated filekey."""
+    filepath = Path(filepath)
+    path = get_path(filepath)
 
-basic_encryption(Path('a.txt'), True)
+    key = read_file(path + 'filekey.key')
+
+    decrypt_file(key, str(filepath))
+
+
