@@ -40,14 +40,15 @@ def basic_encryption(filepath: str, override=False) -> bytes:
 
     return key
     
-def basic_decryption(filepath: str) -> None:
+def basic_decryption(filepath: str) -> bytes:
     """Decrypts a file using the generated filekey."""
     filepath = Path(filepath)
     path = get_path(filepath)
 
     key = read_file(path + 'filekey.key')
 
-    decrypt_file(key, str(filepath))
+    # Decrypt
+    return decrypt_file(key, str(filepath))
 
 
 # Encryption/decryption with password
@@ -71,7 +72,7 @@ def encryption_with_psw(filepath: str, psw: bytes, override=False) -> None:
         copyfile(str(filepath), new_filepath)
         encrypt_file(key, new_filepath)
 
-def decryption_with_psw(filepath: str, psw: bytes) -> None:
+def decryption_with_psw(filepath: str, psw: bytes) -> bytes:
     """Decrypts a file using a given password."""
     path = get_path(Path(filepath))
 
@@ -82,5 +83,4 @@ def decryption_with_psw(filepath: str, psw: bytes) -> None:
     )
 
     # Decrypt
-    decrypt_file(key, filepath)
-    
+    return decrypt_file(key, filepath)

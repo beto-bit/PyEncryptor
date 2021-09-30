@@ -22,7 +22,7 @@ def encrypt_file(key: bytes, filepath: str) -> None:
         encrypted_file.write(encrypted)
         encrypted_file.close()
 
-def decrypt_file(key: bytes, filepath: str) -> None:
+def decrypt_file(key: bytes, filepath: str) -> bytes:
     """Decrypts a file."""
     fernet = Fernet(key)
 
@@ -37,6 +37,8 @@ def decrypt_file(key: bytes, filepath: str) -> None:
     with open(filepath, 'wb') as dec_file:
         dec_file.write(decrypted)
         dec_file.close()
+
+    return decrypted
 
 def generate_key() -> bytes:
     """Simple encapsulator to generate key."""
