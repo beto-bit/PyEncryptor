@@ -22,7 +22,7 @@ def encrypt_file(key: bytes, filepath: str) -> None:
         encrypted_file.write(encrypted)
         encrypted_file.close()
 
-def decrypt_file(key: bytes, filepath: str) -> bytes:
+def decrypt_file(key: bytes, filepath: str, readonly=False) -> bytes:
     """Decrypts a file."""
     fernet = Fernet(key)
 
@@ -34,9 +34,10 @@ def decrypt_file(key: bytes, filepath: str) -> bytes:
     decrypted = fernet.decrypt(encrypted)
 
     # Write the decripted data
-    with open(filepath, 'wb') as dec_file:
-        dec_file.write(decrypted)
-        dec_file.close()
+    if not readonly:
+        with open(filepath, 'wb') as dec_file:
+            dec_file.write(decrypted)
+            dec_file.close()
 
     return decrypted
 

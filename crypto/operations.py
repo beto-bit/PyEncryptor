@@ -1,4 +1,3 @@
-from os import name
 from crypto.crypto import encrypt_file, decrypt_file
 from crypto.crypto import generate_key, generate_filekey, \
                           generate_saltfile ,generate_key_from_psw
@@ -40,7 +39,7 @@ def basic_encryption(filepath: str, override=False) -> bytes:
 
     return key
     
-def basic_decryption(filepath: str) -> bytes:
+def basic_decryption(filepath: str, readonly=False) -> bytes:
     """Decrypts a file using the generated filekey."""
     filepath = Path(filepath)
     path = get_path(filepath)
@@ -48,7 +47,7 @@ def basic_decryption(filepath: str) -> bytes:
     key = read_file(path + 'filekey.key')
 
     # Decrypt
-    return decrypt_file(key, str(filepath))
+    return decrypt_file(key, str(filepath), readonly)
 
 
 # Encryption/decryption with password
@@ -72,7 +71,7 @@ def encryption_with_psw(filepath: str, psw: bytes, override=False) -> None:
         copyfile(str(filepath), new_filepath)
         encrypt_file(key, new_filepath)
 
-def decryption_with_psw(filepath: str, psw: bytes) -> bytes:
+def decryption_with_psw(filepath: str, psw: bytes, readonly=False) -> bytes:
     """Decrypts a file using a given password."""
     path = get_path(Path(filepath))
 
@@ -83,4 +82,4 @@ def decryption_with_psw(filepath: str, psw: bytes) -> bytes:
     )
 
     # Decrypt
-    return decrypt_file(key, filepath)
+    return decrypt_file(key, filepath, readonly)
