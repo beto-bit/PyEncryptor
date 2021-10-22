@@ -51,11 +51,12 @@ def basic_decryption(filepath: str, readonly=False) -> bytes:
 
 
 # Encryption/decryption with password
-def encryption_with_psw(filepath: str, psw: bytes, override=False) -> None:
+def encryption_with_psw(filepath: str, psw: str, override=False) -> None:
     """Encrypts a file using a given password, then storing the
     salt in a separate file, in order to replicate the key."""
     filepath = Path(filepath)
     path = get_path(filepath)
+    psw = psw.encode()
     
     # Generate key
     key = generate_key_from_psw(    
@@ -71,9 +72,10 @@ def encryption_with_psw(filepath: str, psw: bytes, override=False) -> None:
         copyfile(str(filepath), new_filepath)
         encrypt_file(key, new_filepath)
 
-def decryption_with_psw(filepath: str, psw: bytes, readonly=False) -> bytes:
+def decryption_with_psw(filepath: str, psw: str, readonly=False) -> bytes:
     """Decrypts a file using a given password."""
     path = get_path(Path(filepath))
+    psw = psw.encode()
 
     # Generate again the key
     key = generate_key_from_psw(
