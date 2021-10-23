@@ -21,28 +21,44 @@ class UI_Functionality(Ui_MainWindow):
         # Password Text Placeholder
         self.psw_edit.setPlaceholderText("Password")
 
-
     # Encryption/Decryption operations
     def psw_encrypt_clicker(self):
-        if self.fname and self.user_psw:
-            encryption_with_psw(self.fname, self.user_psw)
-
+        try:
+            encryption_with_psw(
+                self.fname, 
+                self.user_psw,
+                self.override_check.isChecked()
+            )
+        except AttributeError:
+            print("File or password not selected") 
+       
     def psw_decrypt_clicker(self):
-        if self.fname and self.user_psw:
+        try:
             decryption_with_psw(self.fname, self.user_psw)
+        except AttributeError:
+            print("File or password not selected")
 
     def b_encrypt_clicker(self):
-        if self.fname:
-            basic_encryption(self.fname)
+        try:
+            basic_encryption(
+                self.fname, 
+                self.override_check.isChecked()
+            )
+        except AttributeError:
+            print("File not selected")
 
     def b_decrypt_clicker(self):
-        if self.fname:
+        try:
             basic_decryption(self.fname)
+        except AttributeError:
+            print("File not selected")
 
     # File Operations
     def file_dialog(self):
+        # Get password
         self.user_psw = self.psw_edit.toPlainText()
 
+        # Create File Dialog.
         fname = QFileDialog.getOpenFileName(
             MainWindow,
             "Open File",
@@ -50,6 +66,7 @@ class UI_Functionality(Ui_MainWindow):
             "All Files (*)"
         )
 
+        # Check if there is a return value.
         if fname:
             self.fname = fname[0]
             

@@ -30,14 +30,21 @@ class Ui_MainWindow(object):
         self.psw_decrypt_btn.setGeometry(QtCore.QRect(70, 190, 131, 23))
         self.psw_decrypt_btn.setObjectName("psw_decrypt_btn")
         self.file_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.file_btn.setGeometry(QtCore.QRect(60, 310, 141, 61))
+        self.file_btn.setGeometry(QtCore.QRect(60, 270, 141, 61))
         self.file_btn.setObjectName("file_btn")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(60, 380, 111, 21))
+        self.label.setGeometry(QtCore.QRect(60, 330, 111, 21))
         self.label.setObjectName("label")
         self.psw_edit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.psw_edit.setGeometry(QtCore.QRect(230, 310, 131, 31))
+        self.psw_edit.setGeometry(QtCore.QRect(220, 270, 131, 31))
         self.psw_edit.setObjectName("psw_edit")
+        self.override_check = QtWidgets.QCheckBox(self.centralwidget)
+        self.override_check.setGeometry(QtCore.QRect(60, 410, 70, 17))
+        self.override_check.setTristate(False)
+        self.override_check.setObjectName("override_check")
+        self.readonly_check = QtWidgets.QCheckBox(self.centralwidget)
+        self.readonly_check.setGeometry(QtCore.QRect(60, 440, 70, 17))
+        self.readonly_check.setObjectName("readonly_check")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -52,6 +59,8 @@ class Ui_MainWindow(object):
         self.psw_decrypt_btn.setText(_translate("MainWindow", "Password Decrypt"))
         self.file_btn.setText(_translate("MainWindow", "Open File"))
         self.label.setText(_translate("MainWindow", "Select File"))
+        self.override_check.setText(_translate("MainWindow", "Override"))
+        self.readonly_check.setText(_translate("MainWindow", "ReadOnly"))
 
 
 if __name__ == "__main__":
