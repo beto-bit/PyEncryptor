@@ -4,7 +4,7 @@ from crypto import encryption_with_psw, decryption_with_psw
 
 import sys 
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QWidget
 
 
 class UI_Functionality(Ui_MainWindow):
@@ -37,9 +37,8 @@ class UI_Functionality(Ui_MainWindow):
 
     # File Operations
     def file_dialog(self):
-
         fname = QFileDialog.getOpenFileName(
-            None,
+            mw,
             "Open File",
             "",
             "All Files (*)"
