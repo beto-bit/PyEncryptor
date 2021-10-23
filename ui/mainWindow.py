@@ -35,6 +35,9 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(60, 380, 111, 21))
         self.label.setObjectName("label")
+        self.psw_edit = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.psw_edit.setGeometry(QtCore.QRect(230, 310, 131, 31))
+        self.psw_edit.setObjectName("psw_edit")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

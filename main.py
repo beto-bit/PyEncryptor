@@ -4,7 +4,7 @@ from crypto import encryption_with_psw, decryption_with_psw
 
 import sys 
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QWidget
+from PyQt5.QtWidgets import QFileDialog
 
 
 class UI_Functionality(Ui_MainWindow):
@@ -18,14 +18,18 @@ class UI_Functionality(Ui_MainWindow):
         # File operations
         self.file_btn.clicked.connect(self.file_dialog)
 
+        # Password Text Placeholder
+        self.psw_edit.setPlaceholderText("Password")
+
+
     # Encryption/Decryption operations
     def psw_encrypt_clicker(self):
-        if self.fname:
-            encryption_with_psw(self.fname, "admin",)
+        if self.fname and self.user_psw:
+            encryption_with_psw(self.fname, self.user_psw)
 
     def psw_decrypt_clicker(self):
-        if self.fname:
-            decryption_with_psw(self.fname, "admin")
+        if self.fname and self.user_psw:
+            decryption_with_psw(self.fname, self.user_psw)
 
     def b_encrypt_clicker(self):
         if self.fname:
@@ -37,8 +41,10 @@ class UI_Functionality(Ui_MainWindow):
 
     # File Operations
     def file_dialog(self):
+        self.user_psw = self.psw_edit.toPlainText()
+
         fname = QFileDialog.getOpenFileName(
-            mw,
+            MainWindow,
             "Open File",
             "",
             "All Files (*)"
@@ -53,11 +59,11 @@ class UI_Functionality(Ui_MainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    mw = QtWidgets.QMainWindow()
+    MainWindow = QtWidgets.QMainWindow()
 
     ui = UI_Functionality()
-    ui.setupUi(mw)
+    ui.setupUi(MainWindow)
     ui.setupInteraction()
 
-    mw.show()
+    MainWindow.show()
     sys.exit(app.exec_())
