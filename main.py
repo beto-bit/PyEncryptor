@@ -34,7 +34,15 @@ class UI_Functionality(Ui_MainWindow):
        
     def psw_decrypt_clicker(self):
         try:
-            decryption_with_psw(self.fname, self.user_psw)
+            decrypted_content = decryption_with_psw(
+                self.fname, 
+                self.user_psw,
+                self.readonly_check.isChecked()
+            )
+
+            #TODO: This will be something like displaying in the screen.     
+            print(decrypted_content)
+
         except AttributeError:
             print("File or password not selected")
 
@@ -49,7 +57,14 @@ class UI_Functionality(Ui_MainWindow):
 
     def b_decrypt_clicker(self):
         try:
-            basic_decryption(self.fname)
+            decrypted_content = basic_decryption(
+                self.fname,
+                self.readonly_check.isChecked()
+            )
+
+            #TODO: This will be something like displaying in the screen.
+            print(decrypted_content)
+
         except AttributeError:
             print("File not selected")
 
