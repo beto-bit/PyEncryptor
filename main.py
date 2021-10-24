@@ -3,6 +3,7 @@ from ui.decryptedTextWindow import Ui_DecryptedWindow
 
 from crypto import basic_encryption, basic_decryption
 from crypto import encryption_with_psw, decryption_with_psw
+from cryptography.fernet import InvalidToken
 
 import os
 import sys 
@@ -59,6 +60,9 @@ class UIFunctionality(Ui_MainWindow):
 
         except AttributeError:
             self.output_text("ERROR: File or password not selected")
+        
+        except InvalidToken:
+            self.output_text("ERROR: Invalid or Wrong password")
 
     def b_encrypt_clicker(self):
         try:
@@ -84,7 +88,7 @@ class UIFunctionality(Ui_MainWindow):
             if readonly:
                 decrypted_text_window.showText(decrypted_content.decode('utf-8'))
 
-            self.output_text("Suceed Basic Decryption")
+            self.output_text("Succeed Basic Decryption")
             self.reset_state()
 
         except AttributeError:
