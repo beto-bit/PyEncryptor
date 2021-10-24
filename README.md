@@ -5,8 +5,13 @@ Now it uses real encryption.
 ### 🖼 GUI
 It uses PyQt5 for the GUI, also using `pyqt5-tools` for transpiling the `.ui` files generated from Qt Designer to `.py` files. 
 I choose a dark, high contrast, minimalistic theme (principally for practical reasons).
+
+![General View](https://github.com/beto-bit/PyEncryptor/blob/main/.github/images/gui_1.png)
+
 The use of PyQt5 was a desicion to improve the GUI. The previous version made use of Tkinter, which was fine, but my experience with programming in general was poor.
 I choose to use an Object Oriented Pattern to make the interactions (like buttons or labels). Also, PyQt5 has the superb GUI editor Qt Designer, which made my life easier.
+
+![Decrypt Window](https://github.com/beto-bit/PyEncryptor/blob/main/.github/images/gui_2.png)
 
 ### 🔐 Encrypt/Decrypt
 The encryption uses the `cryptography` pip module. It uses Fernet, and is capable of using passwords. Its core functionality made use of files to store encryption data.
