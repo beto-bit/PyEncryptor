@@ -76,7 +76,7 @@ class UI_Functionality(Ui_MainWindow):
         # Create File Dialog.
         fname = QFileDialog.getOpenFileName(
             MainWindow,
-            "Open File",
+            "Select File",
             "",
             "All Files (*)"
         )
