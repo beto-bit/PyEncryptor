@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>652</width>
+    <height>505</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PyEncryptor</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/window_icon.png</normaloff>icons/window_icon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #121212;
+color: white;
+font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="b_encrypt_btn">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>60</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #212121;
+text-decoration: underline;</string>
+    </property>
+    <property name="text">
+     <string>Basic Encryption</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="b_decrypt_btn">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>100</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #212121;
+text-decoration: underline;</string>
+    </property>
+    <property name="text">
+     <string>Basic Decrypt</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="psw_encrypt_btn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>60</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #212121;
+text-decoration: underline;</string>
+    </property>
+    <property name="text">
+     <string>Password Encryption</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="psw_decrypt_btn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>100</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #212121;
+text-decoration: underline;</string>
+    </property>
+    <property name="text">
+     <string>Password Decrypt</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="file_btn">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>370</y>
+      <width>141</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #102A43;
+font: 11pt &quot;Consolas&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Select File</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filepath_label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>450</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>[Selected File]</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="psw_edit">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>390</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Password</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="overwrite_check">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>390</y>
+      <width>91</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Overwrite</string>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="readonly_check">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>420</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ReadOnly</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>381</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #1F2933;
+border-radius: 15px;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="output_label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #222222</string>
+    </property>
+    <property name="text">
+     <string> &gt;</string>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>b_encrypt_btn</zorder>
+   <zorder>b_decrypt_btn</zorder>
+   <zorder>psw_encrypt_btn</zorder>
+   <zorder>psw_decrypt_btn</zorder>
+   <zorder>file_btn</zorder>
+   <zorder>filepath_label</zorder>
+   <zorder>psw_edit</zorder>
+   <zorder>overwrite_check</zorder>
+   <zorder>readonly_check</zorder>
+   <zorder>output_label</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,23 +1,22 @@
-# Encriptador
-Un programa con una GUI integrada y capaz de "encriptar" blocs de notas seleccionados, mediante una contraseña. También es capaz de realizar el proceso inverso.
-El algoritmo de "encriptación" (que no se si debería llamarlo así) funciona de la siguiente manera. 
+# PyEncrypter
+A program with an integrated GUI, able to encrypt/decrypt various types of files. This is an improved version of the one implemented in Tkinter.
+Now it uses real encryption.
 
-# El Algoritmo
-1. Lee el documento y separa cada uno de sus caracteres.
-2. Transforma cada caracter en su equivalente de UNICODE.
-3. Con una contraseña, suma al valor anterior el valor de la contraseña.
-4. Escribe un nuevo documento con los caracteres que quedaron.
+### 🖼 GUI
+It uses PyQt5 for the GUI, also using `pyqt5-tools` for transpiling the `.ui` files generated from Qt Designer to `.py` files. 
+I choose a dark, high contrast, minimalistic theme (principally for practical reasons).
+The use of PyQt5 was a desicion to improve the GUI. The previous version made use of Tkinter, which was fine, but my experience with programming in general was poor.
+I choose to use an Object Oriented Pattern to make the interactions (like buttons or labels). Also, PyQt5 has the superb GUI editor Qt Designer, which made my life easier.
 
-Cuando desencripta el documento es básicamente lo mismo, solo que resta la contraseña en vez de sumarla.
+### 🔐 Encrypt/Decrypt
+The encryption uses the `cryptography` pip module. It uses Fernet, and is capable of using passwords. Its core functionality made use of files to store encryption data.
+When you use the "Basic Encryption" it generates a `filekey.key` when it is stored, well, the key. 
+If you decide to use the "Password Encryption" it generates a `salt.key`, that is processed with a human friendly password. 
 
-# ¿Cómo funciona en realidad?
-Básicamente un bucle lee cada uno de los valores y los asigna en un generador. 
-Antiguamente utilizaba una lista pero este sistema consume demasiada RAM a medida que el documento crece. 
 
-Luego, con ese generador creo un objeto que lo contiene, para que pueda cambiar los atributos del objeto y no generar muchas variables. Ahí tengo alojados los métodos, que consisten en generar un equivalente de UNICODE y uno de Caracteres. 
-Luego de eso, en el __init__.py recopilo todas estas funciones y creo una función que encripta los archivos recibiendo el nombre y la contraseña (en cadena de texto) y otra con los mismo argumentos pero para la desencriptación.
+## 💻 Dev Tools
+As it is said, `pyqt5-tools` was used for transpiling `.ui` files to `.py` ones. There is one PowerShell script to transpile both window files. 
+If you want to modify the program, I recomend you to use a virtual environment. You need to install `pyqt5-tools`, and optionally Qt Designer.
 
-Todo eso lo integro con una interaz gráfica creada con la librería tkinter y así tenemos el resultado final. 
-
-# ¡Gracias por ver este repositorio!
-Siéntete libre de compartirlo y de hacer tus propias versiones, estaré revisándolas.
+## 🎊 It's Done
+Feel free to share and modify this program. I will thank you a lot if you do that. 
