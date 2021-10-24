@@ -2,6 +2,7 @@ from ui.mainWindow import Ui_MainWindow
 from crypto import basic_encryption, basic_decryption
 from crypto import encryption_with_psw, decryption_with_psw
 
+import os
 import sys 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
@@ -82,7 +83,7 @@ class UI_Functionality(Ui_MainWindow):
         )
 
         # Check if there is a return value.
-        if fname:
+        if os.path.isfile(fname[0]):
             self.fname = fname[0]
             
             self.label.setText(fname[0])
