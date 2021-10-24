@@ -9,6 +9,11 @@ from PyQt5.QtWidgets import QFileDialog
 
 
 class UI_Functionality(Ui_MainWindow):
+    def __init__(self) -> None:
+        super().__init__()
+        self.setupUi(MainWindow)
+        self.setupInteraction()
+
     def setupInteraction(self):
         # Buttons
         self.psw_encrypt_btn.clicked.connect(self.psw_encrypt_clicker)
@@ -114,8 +119,6 @@ if __name__ == '__main__':
     MainWindow = QtWidgets.QMainWindow()
 
     ui = UI_Functionality()
-    ui.setupUi(MainWindow)
-    ui.setupInteraction()
 
     MainWindow.show()
     sys.exit(app.exec_())
