@@ -1,4 +1,6 @@
 from ui.mainWindow import Ui_MainWindow
+from ui.decryptedTextWindow import Ui_DecryptedWindow
+
 from crypto import basic_encryption, basic_decryption
 from crypto import encryption_with_psw, decryption_with_psw
 
@@ -8,7 +10,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
 
-class UI_Functionality(Ui_MainWindow):
+class UIFunctionality(Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(MainWindow)
@@ -40,14 +42,18 @@ class UI_Functionality(Ui_MainWindow):
        
     def psw_decrypt_clicker(self):
         try:
+            readonly = self.readonly_check.isChecked()
+
             decrypted_content = decryption_with_psw(
                 self.fname, 
                 self.psw_edit.toPlainText(),
-                self.readonly_check.isChecked()
+                readonly
             )
 
-            #TODO: This will be something like displaying in the screen.     
-            print(decrypted_content)
+            # Show in the other window
+            if readonly:
+                decrypted_text_window.showText(decrypted_content.decode('utf-8'))
+
             self.output_text("Succeed Decryption")
             self.reset_state()
 
@@ -68,13 +74,16 @@ class UI_Functionality(Ui_MainWindow):
 
     def b_decrypt_clicker(self):
         try:
+            readonly = self.readonly_check.isChecked()
+
             decrypted_content = basic_decryption(
                 self.fname,
-                self.readonly_check.isChecked()
+                readonly
             )
 
-            #TODO: This will be something like displaying in the screen.
-            print(decrypted_content)
+            if readonly:
+                decrypted_text_window.showText(decrypted_content.decode('utf-8'))
+
             self.output_text("Suceed Basic Decryption")
             self.reset_state()
 
@@ -114,11 +123,25 @@ class UI_Functionality(Ui_MainWindow):
         self.readonly_check.setChecked(False)
 
 
+class OutputWindow(Ui_DecryptedWindow):
+    def __init__(self) -> None:
+        super().__init__()
+        self.setupUi(DecryptedWindow)
+
+    def showText(self, text: str):
+        """Shows a text."""
+        self.textBrowser.setPlainText(text)
+        DecryptedWindow.show()
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
 
-    ui = UI_Functionality()
+    MainWindow = QtWidgets.QMainWindow()
+    DecryptedWindow = QtWidgets.QWidget()
+
+    ui = UIFunctionality()
+    decrypted_text_window = OutputWindow()
 
     MainWindow.show()
     sys.exit(app.exec_())
