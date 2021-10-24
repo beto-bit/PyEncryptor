@@ -19,16 +19,13 @@ class UI_Functionality(Ui_MainWindow):
         # File operations
         self.file_btn.clicked.connect(self.file_dialog)
 
-        # Password Text Placeholder
-        self.psw_edit.setPlaceholderText("Password")
-
     # Encryption/Decryption operations
     def psw_encrypt_clicker(self):
         try:
             encryption_with_psw(
                 self.fname, 
                 self.user_psw,
-                self.override_check.isChecked()
+                self.overwrite_check.isChecked()
             )
         except AttributeError:
             print("File or password not selected") 
@@ -51,7 +48,7 @@ class UI_Functionality(Ui_MainWindow):
         try:
             basic_encryption(
                 self.fname, 
-                self.override_check.isChecked()
+                self.overwrite_check.isChecked()
             )
         except AttributeError:
             print("File not selected")

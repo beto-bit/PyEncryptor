@@ -22,7 +22,7 @@ def read_file(filepath) -> bytes:
 
 
 # Basic encryption/decryption funcs
-def basic_encryption(filepath: str, override=False) -> bytes:
+def basic_encryption(filepath: str, overwrite=False) -> bytes:
     """Encrypts a file using a generated key, writes the key in the
     same folder as the file and then returns the key"""
     filepath = Path(filepath)
@@ -30,7 +30,7 @@ def basic_encryption(filepath: str, override=False) -> bytes:
     key = generate_filekey(path)
 
     # Override options
-    if override:
+    if overwrite:
         encrypt_file(key, str(filepath))
     else:
         new_filepath = path + filepath.stem + '_crypted' + filepath.suffix
@@ -51,7 +51,7 @@ def basic_decryption(filepath: str, readonly=False) -> bytes:
 
 
 # Encryption/decryption with password
-def encryption_with_psw(filepath: str, psw: str, override=False) -> None:
+def encryption_with_psw(filepath: str, psw: str, overwrite=False) -> None:
     """Encrypts a file using a given password, then storing the
     salt in a separate file, in order to replicate the key."""
     filepath = Path(filepath)
@@ -65,7 +65,7 @@ def encryption_with_psw(filepath: str, psw: str, override=False) -> None:
     )
 
     # Override Options
-    if override:
+    if overwrite:
         encrypt_file(key, str(filepath))
     else:
         new_filepath = path + filepath.stem + '_crypted' + filepath.suffix

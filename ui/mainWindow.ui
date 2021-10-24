@@ -117,8 +117,11 @@ font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
       <height>31</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Password</string>
+    </property>
    </widget>
-   <widget class="QCheckBox" name="override_check">
+   <widget class="QCheckBox" name="overwrite_check">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -128,7 +131,7 @@ font-family: &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace;
      </rect>
     </property>
     <property name="text">
-     <string>Override</string>
+     <string>Overwrite</string>
     </property>
     <property name="tristate">
      <bool>false</bool>
