@@ -112,7 +112,7 @@ font: 11pt &quot;Consolas&quot;;</string>
      <string>Select File</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="filepath_label">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -187,16 +187,33 @@ border-radius: 15px;</string>
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="output_label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #222222</string>
+    </property>
+    <property name="text">
+     <string> &gt;</string>
+    </property>
+   </widget>
    <zorder>frame</zorder>
    <zorder>b_encrypt_btn</zorder>
    <zorder>b_decrypt_btn</zorder>
    <zorder>psw_encrypt_btn</zorder>
    <zorder>psw_decrypt_btn</zorder>
    <zorder>file_btn</zorder>
-   <zorder>label</zorder>
+   <zorder>filepath_label</zorder>
    <zorder>psw_edit</zorder>
    <zorder>overwrite_check</zorder>
    <zorder>readonly_check</zorder>
+   <zorder>output_label</zorder>
   </widget>
  </widget>
  <resources/>

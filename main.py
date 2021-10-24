@@ -24,25 +24,30 @@ class UI_Functionality(Ui_MainWindow):
         try:
             encryption_with_psw(
                 self.fname, 
-                self.user_psw,
+                self.psw_edit.toPlainText(),
                 self.overwrite_check.isChecked()
             )
+            self.output_text("Succeed Encryption")
+            self.reset_state()
+
         except AttributeError:
-            print("File or password not selected") 
+            self.output_text("ERROR: File or password not selected") 
        
     def psw_decrypt_clicker(self):
         try:
             decrypted_content = decryption_with_psw(
                 self.fname, 
-                self.user_psw,
+                self.psw_edit.toPlainText(),
                 self.readonly_check.isChecked()
             )
 
             #TODO: This will be something like displaying in the screen.     
             print(decrypted_content)
+            self.output_text("Succeed Decryption")
+            self.reset_state()
 
         except AttributeError:
-            print("File or password not selected")
+            self.output_text("ERROR: File or password not selected")
 
     def b_encrypt_clicker(self):
         try:
@@ -50,8 +55,11 @@ class UI_Functionality(Ui_MainWindow):
                 self.fname, 
                 self.overwrite_check.isChecked()
             )
+            self.output_text("Succeed Basic Encryption")
+            self.reset_state()
+
         except AttributeError:
-            print("File not selected")
+            self.output_text("ERROR: File not selected")
 
     def b_decrypt_clicker(self):
         try:
@@ -62,15 +70,14 @@ class UI_Functionality(Ui_MainWindow):
 
             #TODO: This will be something like displaying in the screen.
             print(decrypted_content)
+            self.output_text("Suceed Basic Decryption")
+            self.reset_state()
 
         except AttributeError:
-            print("File not selected")
+            self.output_text("ERROR: File not selected")
 
     # File Operations
     def file_dialog(self):
-        # Get password
-        self.user_psw = self.psw_edit.toPlainText()
-
         # Create File Dialog.
         fname = QFileDialog.getOpenFileName(
             MainWindow,
@@ -83,8 +90,23 @@ class UI_Functionality(Ui_MainWindow):
         if os.path.isfile(fname[0]):
             self.fname = fname[0]
             
-            self.label.setText(fname[0])
-            self.label.adjustSize()
+            self.filepath_label.setText(fname[0])
+            self.filepath_label.adjustSize()
+
+    # Various Actions
+    def output_text(self, text: str):
+        """Outputs the text into the output label."""
+        self.output_label.setText(' >' + text)
+
+    def reset_state(self):
+        """Resets the general state of the program."""
+        del self.fname
+        
+        self.filepath_label.setText("[Selected File]")
+        self.filepath_label.adjustSize()
+
+        self.overwrite_check.setChecked(False)
+        self.readonly_check.setChecked(False)
 
 
 if __name__ == '__main__':
