@@ -1,14 +1,14 @@
-from ui.mainWindow import Ui_MainWindow
-from ui.decryptedTextWindow import Ui_DecryptedWindow
-
-from crypto import basic_encryption, basic_decryption
-from crypto import encryption_with_psw, decryption_with_psw
-from cryptography.fernet import InvalidToken
-
 import os
 import sys 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+from cryptography.fernet import InvalidToken
+
+from ui.mainWindow import Ui_MainWindow
+from ui.decryptedTextWindow import Ui_DecryptedWindow
+
+from crypto import basic_encryption, basic_decryption, \
+                   encryption_with_psw, decryption_with_psw
 
 
 class UIFunctionality(Ui_MainWindow):
@@ -16,6 +16,7 @@ class UIFunctionality(Ui_MainWindow):
         super().__init__()
         self.setupUi(MainWindow)
         self.setupInteraction()
+        self.readonly_check.setChecked(True)
 
     def setupInteraction(self):
         # Buttons
