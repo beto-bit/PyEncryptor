@@ -19,7 +19,7 @@ If you decide to use the "Password Encryption" it generates a `salt.key`, which 
 
 
 ## 💻 Dev Tools
-As it's said, `pyqt5-tools` was used for generating the `.ui` files, making use of Qt Designer (`pyqt5-tools` pip package ships it). Then you can transpile them to `.py` ones. There is one PowerShell and one Bash script to transpile both window files. If you're on Mac or GNU/Linux, you should run the script to get the icons working.
+As it's said, `pyqt5-tools` was used for generating the `.ui` files, making use of Qt Designer (`pyqt5-tools` pip package ships it). I recommend you this [tutorial](https://realpython.com/qt-designer-python/). Then you can transpile them to `.py` ones. There is one PowerShell and one Bash script to transpile both window files. If you're on Mac or GNU/Linux, you should run the script to get the icons working.
 If you want to modify the program, I highly recomend you to use a virtual environment. You need to install Qt Designer to modify the `.ui` files.
 
 ## 🎊 It's Done
